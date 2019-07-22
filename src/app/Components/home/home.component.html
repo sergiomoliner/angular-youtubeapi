@@ -1,0 +1,35 @@
+<div class="container main-container">
+  <h1>Canal de Youtube</h1>
+  <hr>
+
+<div class="card-columns">
+  <div class="card" *ngFor="let video of videos">
+    <img [src]="video.thumbnails.high.url" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{video.title}}</h5>
+      <p class="card-text">{{video.description}}</p>
+      <button (click)="verVideo(video)" type="button" class="btn btn-outline-primary btn-block">Ver Video</button>
+    </div>
+  </div>
+</div>
+
+<button (click)="cargarMas()" class="btn btn-outline-primary btn-block">Cargar más videos</button>
+
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content" *ngIf="videoSeleccionado">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{videoSeleccionado.title}}</h5>
+      </div>
+      <div class="modal-body">
+        <iframe width="100%" height="300" [src]="videoSeleccionado.resourceId.videoId | videoYoutube" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="modal-footer">
+        <button (click)="cerrarModal()" type="button" class="btn btn-secondary">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
